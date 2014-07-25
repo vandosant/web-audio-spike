@@ -6,20 +6,47 @@
 <body>
 
 <button class="on">On</button>
-<button class="off">Off</button>
+<button class="volume">Volume</button>
+<button class="mute">Mute</button>
 
 <script>
     var context = new webkitAudioContext();
-    var sineWave = context.createOscillator();
+    var oscillator = context.createOscillator();
+    var gainNode = context.createGain();
+    var initialFrequency = 900;
+    var initialVolume = 0.2;
+    var $mute = document.querySelector('.mute');
 
     $(document).on("click", ".on", function(){
-        sineWave.connect(context.destination);
-        sineWave.noteOn(0);
+        gainNode.connect(context.destination);
+        oscillator.connect(gainNode);
+        oscillator.type = 0;
+        oscillator.frequency.value = initialFrequency;
+        oscillator.start();
+        console.log($mute.id);
+        console.log($mute.innerHTML);
+        $mute.id = "active";
+        $mute.innerHTML = "Mute";
     });
 
-    $(document).on("click", ".off", function(){
-        sineWave.noteOff(0);
+    $mute.onclick = function(){
+        if (this.id === "") {
+            gainNode.connect(context.destination);
+            this.innerHTML = "Mute";
+            this.id = "active";
+        } else {
+            gainNode.disconnect(context.destination);
+            this.innerHTML = "Unmute";
+            this.id = "";
+        }
+    };
+
+    $(document).on("click", ".volume", function(){
+        gainNode.gain.value = initialVolume;
+
     });
+
+
 </script>
 </body>
 </html>
