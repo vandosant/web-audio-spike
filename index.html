@@ -41,7 +41,7 @@
         oscillator.connect(gainNode);
         oscillator.type = 0;
         oscillator.frequency.value = initialFrequency;
-        oscillator.start();
+        oscillator.start(0);
         $mute.id = "active";
         $mute.innerHTML = "Mute";
     });
@@ -68,7 +68,7 @@
 
     updateFrequency = function(val) {
         oscillator.frequency.value = (val*100);
-        oscillator.start();
+        oscillator.start(0);
     }
 </script>
 </body>
