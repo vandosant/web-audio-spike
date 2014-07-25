@@ -28,11 +28,14 @@ input[type='range'] {
     background-color: silver;
     width: 200px;
     height:20px;
+    border-radius: 2em;
+    outline: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-color: #29009a;
+    background-color: #b94d07;
+    border: 2px solid black;
     width: 2em;
     height: 2em;
     border-radius: 2em;
