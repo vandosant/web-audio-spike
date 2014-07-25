@@ -6,11 +6,13 @@
 </head>
 <body>
 <div class="container">
-    <span>Oscillator</span>
+    <div>Oscillator</div>
     <button class="on">On</button>
     <button class="off">Off</button>
-    <button class="volume">Volume</button>
     <button class="mute">Mute</button>
+
+    <div id="volume-label">Volume</div>
+    <input type="range" min="0" max="100" class="volume" onchange="updateVolume(this.value)">
 </div>
 
 <script>
@@ -57,17 +59,10 @@
         }
     };
 
-    $(document).on("click", ".volume", function () {
-        if (this.id === "") {
-            gainNode.gain.value = initialVolume;
-            this.id = "active";
-        } else {
-            gainNode.gain.value = 1;
-            this.id = "";
-        }
-    });
-
-
+    updateVolume = function(val) {
+        console.log((val/100));
+        gainNode.gain.value = (val/100);
+    };
 </script>
 </body>
 </html>
