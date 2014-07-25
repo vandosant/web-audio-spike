@@ -1,0 +1,21 @@
+body {
+    width: 100%;
+    font: 1em sans-serif;
+}
+.container {
+    width: 30%;
+    margin: 0 auto;
+    background-color: #eeeeee;
+    border: 2px solid #b94d07;
+    text-align: center;
+}
+
+button {
+    font: .8em sans-serif;
+    background: #fff;
+    border: 2px solid #29009a;
+    outline: none;
+}
+button:hover{
+    background: #ffe2e7;
+}

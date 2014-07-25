@@ -1,13 +1,17 @@
 <html>
 <head>
     <title>Web Audio API</title>
+    <link type="text/css" href="public/vendors/css/application.css" rel="stylesheet">
     <script type="text/javascript" src="public/vendors/javascript/jquery.2.1.1.js"></script>
 </head>
 <body>
-<button class="on">On</button>
-<button class="off">Off</button>
-<button class="volume">Volume</button>
-<button class="mute">Mute</button>
+<div class="container">
+    <span>Oscillator</span>
+    <button class="on">On</button>
+    <button class="off">Off</button>
+    <button class="volume">Volume</button>
+    <button class="mute">Mute</button>
+</div>
 
 <script>
     var contextClass = (window.AudioContext ||
