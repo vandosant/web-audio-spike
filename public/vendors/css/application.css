@@ -22,3 +22,18 @@ button {
 button:hover{
     background: #ffe2e7;
 }
+
+input[type='range'] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 200px;
+    height:20px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #29009a;
+    width: 2em;
+    height: 2em;
+    border-radius: 2em;
+}
