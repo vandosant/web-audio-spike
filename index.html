@@ -1,16 +1,25 @@
 <html>
 <head>
     <title>Web Audio API</title>
+    <script type="text/javascript" src="public/vendors/javascript/jquery.2.1.1.js"></script>
 </head>
 <body>
-Hello world
+
+<button class="on">On</button>
+<button class="off">Off</button>
+
 <script>
     var context = new webkitAudioContext();
     var sineWave = context.createOscillator();
 
-    sineWave.connect(context.destination);
-    sineWave.noteOn(0);
-//    sineWave.noteOff(0);
+    $(document).on("click", ".on", function(){
+        sineWave.connect(context.destination);
+        sineWave.noteOn(0);
+    });
+
+    $(document).on("click", ".off", function(){
+        sineWave.noteOff(0);
+    });
 </script>
 </body>
 </html>
