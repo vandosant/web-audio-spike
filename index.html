@@ -27,7 +27,7 @@
     var initialVolume = 0.2;
     var $mute = document.querySelector('.mute');
 
-    $(document).on("click", ".on", function(){
+    $(document).on("click", ".on", function () {
         gainNode.connect(context.destination);
         oscillator.connect(gainNode);
         oscillator.type = 0;
@@ -37,11 +37,11 @@
         $mute.innerHTML = "Mute";
     });
 
-    $(document).on("click", ".off", function(){
+    $(document).on("click", ".off", function () {
         oscillator.disconnect(0);
     });
 
-    $mute.onclick = function(){
+    $mute.onclick = function () {
         if (this.id === "") {
             gainNode.connect(context.destination);
             this.innerHTML = "Mute";
@@ -53,7 +53,7 @@
         }
     };
 
-    $(document).on("click", ".volume", function(){
+    $(document).on("click", ".volume", function () {
         if (this.id === "") {
             gainNode.gain.value = initialVolume;
             this.id = "active";
