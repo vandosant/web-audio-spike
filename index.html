@@ -54,8 +54,13 @@
     };
 
     $(document).on("click", ".volume", function(){
-        gainNode.gain.value = initialVolume;
-
+        if (this.id === "") {
+            gainNode.gain.value = initialVolume;
+            this.id = "active";
+        } else {
+            gainNode.gain.value = 1;
+            this.id = "";
+        }
     });
 
 
