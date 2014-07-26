@@ -7,16 +7,29 @@
 </head>
 <body>
 <div class="container">
-    <div class="title">Oscillator</div>
-    <button class="on">On</button>
-    <button class="off">Off</button>
-    <button class="mute">Mute</button>
+    <div class="title">Oscillator 1</div>
+    <button class="on1">On</button>
+    <button class="off1">Off</button>
+    <button class="mute1">Mute</button>
 
     <div class="label" id="frequency-label">Frequency</div>
     <input type="range" min="0" max="100" class="frequency" value="9" onchange="updateFrequency(this.value)">
 
     <div class="label" id="volume-label">Volume</div>
     <input type="range" min="0" max="100" class="volume" value="100" onchange="updateVolume(this.value)">
+</div>
+
+<div class="container">
+    <div class="title">Oscillator 1</div>
+    <button class="on2">On</button>
+    <button class="off2">Off</button>
+    <button class="mute2">Mute</button>
+
+    <div class="label" id="frequency2-label">Frequency</div>
+    <input type="range" min="0" max="100" class="frequency2" value="9" onchange="updateFrequency2(this.value)">
+
+    <div class="label" id="volume2-label">Volume</div>
+    <input type="range" min="0" max="100" class="volume2" value="100" onchange="updateVolume2(this.value)">
 </div>
 
 <script>
@@ -31,46 +44,88 @@
         $(document).append('<div class="errors">Sorry, your browser is not supported.</div>');
     }
 
-    var oscillator = context.createOscillator();
-    var gainNode = context.createGain();
+    var oscillator1 = context.createOscillator();
+    var gainNode1 = context.createGain();
     var initialFrequency = 900;
     var initialVolume = 0.2;
-    var $mute = document.querySelector('.mute');
+    var $mute1 = document.querySelector('.mute1');
 
-    $(document).on("click", ".on", function () {
-        gainNode.connect(context.destination);
-        oscillator.connect(gainNode);
-        oscillator.type = 0;
-        oscillator.frequency.value = initialFrequency;
-        oscillator.start(0);
-        $mute.id = "active";
-        $mute.innerHTML = "Mute";
+    var oscillator2 = context.createOscillator();
+    var gainNode2 = context.createGain();
+    var $mute2 = document.querySelector('.mute1');
+
+
+    $(document).on("click", ".on1", function () {
+        gainNode1.connect(context.destination);
+        oscillator1.connect(gainNode1);
+        oscillator1.type = 0;
+        oscillator1.frequency.value = initialFrequency;
+        oscillator1.start(0);
+        $mute1.id = "active";
+        $mute1.innerHTML = "Mute";
     });
 
-    $(document).on("click", ".off", function () {
-        oscillator.disconnect(0);
+    $(document).on("click", ".off1", function () {
+        oscillator1.disconnect(0);
     });
 
-    $mute.onclick = function () {
+    $mute1.onclick = function () {
         if (this.id === "") {
-            gainNode.connect(context.destination);
+            gainNode1.connect(context.destination);
             this.innerHTML = "Mute";
             this.id = "active";
         } else {
-            gainNode.disconnect(0);
+            gainNode1.disconnect(0);
             this.innerHTML = "Unmute";
             this.id = "";
         }
     };
 
     updateVolume = function(val) {
-        gainNode.gain.value = (val/100);
+        gainNode1.gain.value = (val/100);
     };
 
     updateFrequency = function(val) {
-        oscillator.frequency.value = (val*100);
-        oscillator.start(0);
-    }
+        oscillator1.frequency.value = (val*100);
+        oscillator1.start(0);
+    };
+
+
+    $(document).on("click", ".on2", function () {
+        gainNode2.connect(context.destination);
+        oscillator2.connect(gainNode1);
+        oscillator2.type = 0;
+        oscillator2.frequency.value = initialFrequency;
+        oscillator2.start(0);
+        $mute2.id = "active";
+        $mute2.innerHTML = "Mute";
+    });
+
+    $(document).on("click", ".off2", function () {
+        oscillator2.disconnect(0);
+    });
+
+    $mute2.onclick = function () {
+        if (this.id === "") {
+            gainNode2.connect(context.destination);
+            this.innerHTML = "Mute";
+            this.id = "active";
+        } else {
+            gainNode2.disconnect(0);
+            this.innerHTML = "Unmute";
+            this.id = "";
+        }
+    };
+
+    updateVolume2 = function(val) {
+        gainNode2.gain.value = (val/100);
+    };
+
+    updateFrequency2 = function(val) {
+        oscillator2.frequency.value = (val*100);
+        oscillator2.start(0);
+    };
+
 </script>
 </body>
 </html>
